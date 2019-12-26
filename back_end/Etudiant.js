@@ -1,17 +1,7 @@
-/*var bdd = require('./bdd');
 
-var Etudiant = {
-    entrerChoix: function (Choix1,Choix2,Choix3,Matricul, callback) {
-       
-       return  bdd.query('UPDATE etudiant SET Choix1 = ?,Choix2 = ?, Choix3 = ? WHERE Matricul = ?', [Choix1,Choix2,Choix3,Matricul],callback);
-    }
-    
-}
-
-module.exports = Etudiant;*/
 var User = require('./User');
 var bdd=require('./bdd');
-var Formulaire =require('./Formulaire')
+var Formulaire =require('./Formulaire');
 
 class Etudiant extends User {
     constructor(motpass,login)
