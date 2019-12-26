@@ -1,10 +1,28 @@
-var bdd = require('./bdd');
+/*var bdd = require('./bdd');
 
 var Etudiant = {
-    entrerChoix: function (formulaire, callback) {
-        return bdd.query(' UPDATE etudiant SET choix1 = formulaire.choix1, choix2 = formulaire.choix2,choix3 = formulaire.choix3 WHERE id =formulaire.matricule', callback)
+    entrerChoix: function (Choix1,Choix2,Choix3,Matricul, callback) {
+       
+       return  bdd.query('UPDATE etudiant SET Choix1 = ?,Choix2 = ?, Choix3 = ? WHERE Matricul = ?', [Choix1,Choix2,Choix3,Matricul],callback);
     }
     
 }
 
-module.exports = Etudiant;
+module.exports = Etudiant;*/
+var User = require('./User');
+var bdd=require('./bdd');
+var Formulaire =require('./Formulaire')
+
+class Etudiant extends User {
+    constructor(motpass,login)
+    {
+        super(motpass,login);
+        this.formulaire=null
+    }
+    entrerChoix(Choix1,Choix2,Choix3,Matricul, callback) {
+       
+        return  bdd.query('UPDATE etudiant SET Choix1 = ?,Choix2 = ?, Choix3 = ? WHERE Matricul = ?', [Choix1,Choix2,Choix3,Matricul],callback);
+     }
+    
+}
+module.exports=Etudiant;
