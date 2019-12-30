@@ -1,32 +1,37 @@
-/********************création du controleur*************** */
 /**
- * @type {object} Une variable contenant le module retourné par require('express').
+ * création du controleu
+ */
+/**
+ * Une variable contenant le module retourné par require('express').
+ * @type {objecr} 
  */
 var express = require('express');
 /**
- * 
+ * Une variable contenant un gestionnaire de route créé par express.Router().
+ * @type {any}
  */
 var router = express.Router();
 /**
- * @type {object} Une variable contenant le module retouré par require('body-parser').
+ * Une variable contenant le module retouré par require('body-parser').
+ * @type {object} 
  */
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 /**
- * @type {Etudiant} une variable contenant le module retourné par require('./Etudiant').
+ * @type {object} une variable contenant le module retourné par require('./Etudiant').
  */
 var Etudiant = require('./Etudiant');
 /**
- * @type {Admin} une variable contenant le module retourné par require('./Admin').
+ * @type {object} une variable contenant le module retourné par require('./Admin').
   */
 var Admin = require('./Admin');
 /**
- * @type {bdd} une variable contenant le module retourné par require('./bdd').
+ * @type {object} une variable contenant le module retourné par require('./bdd').
  */
 var bdd = require('./bdd');
 /*route pour afficher les choix des etudiants par l'admine*/
 /**
- *  @type {object} Une route pour afficher les choix des étudiants.
+ *  @type {any} Une route pour afficher les choix des étudiants.
  */
 router.get('/afficher', function (req, res) {
     var A =new Admin();
@@ -40,9 +45,12 @@ router.get('/afficher', function (req, res) {
         }
     });
 });
-
+/**
+ * @type {any} une route pour ajouter les étudiants dans la base de donénes
+ */
 router.put('/ajouter', function (req, res) {
     var E =new Etudiant();
+
         E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
         if(err)
         {

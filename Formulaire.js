@@ -1,3 +1,6 @@
+/**
+ * Classe qui represente un formulaire.
+ */
 class Formulaire {
     /**
      * 

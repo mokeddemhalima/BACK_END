@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Formulaire.js</title>
+    <title>JSDoc: Source: serveur.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Formulaire.js</h1>
+    <h1 class="page-title">Source: serveur.js</h1>
 
     
 
@@ -27,30 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Classe qui represente un formulaire.
+ * MISE EN PLACE DU SERVEUR
+*/
+/**
+ * Une variable contenant le module retourné par require('./app').
+ * @type {object} 
  */
-class Formulaire {
-    /**
-     * 
-     * 
-     * @param {string} id Variable contenant le matricule de l'étudiant.
-     * @param {strig} nom Variable contenant le nom de l'étudiant.
-     * @param {string} prenom Variable contenant le prénom de l'étudiant.
-     * @param {email} email Variable conenant l'Email de l'étudiant.
-     * @param {string} choix1 Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant. 
-     * @param {string} choix2 Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant. 
-     * @param {string} choix3 Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant. 
-     */
-    constructeur(id,nom,prenom,email,choix1,choix2,choix3){
-        this.Matricul=id;
-        this.Nom=nom;
-        this.Prenom=prenom;
-        this.Email=email;
-        this.Choix1=choix1;
-        this.Choix2=choix2;
-        this.Choix3=choix3;
-    }
-    }module.exports=Formulaire;</code></pre>
+var app = require('./app');
+/**
+ * indique sur quel port le serveur doit écouter pour que le routage fonctionne correctement.
+ * @type {object} 
+ */
+var port = process.env.PORT || 3000;
+/**
+ * Variable contenant le serveur http retourné par app.listen().
+ * @type {object} 
+ */
+var server = app.listen(port, function() {
+    console.log('Express server listening on port ' + port);
+    const all_routes = require('express-list-endpoints');
+    console.log(all_routes(app));
+});</code></pre>
         </article>
     </section>
 

@@ -1,6 +1,6 @@
 /**
  * Variable contenant le module retourné par require('./User').
- * @type {object}
+ * @type {any}
  */
 var User = require('./User');
 /**

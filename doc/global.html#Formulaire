@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Etudiant</title>
+    <title>JSDoc: Class: Formulaire</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Etudiant</h1>
+    <h1 class="page-title">Class: Formulaire</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Etudiant<span class="signature">(motpass, login)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Formulaire<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Classe qui represente un Etudiant.</p></div>
+            <div class="class-description"><p>Classe qui represente un formulaire.</p></div>
         
     
 </header>
@@ -45,95 +45,19 @@
     
 
     
-    <h4 class="name" id="Etudiant"><span class="type-signature"></span>new Etudiant<span class="signature">(motpass, login)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Formulaire"><span class="type-signature"></span>new Formulaire<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
 
 
 
-<div class="description">
-    <p>Constructeur avec argument.</p>
-</div>
 
 
 
 
 
 
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>motpass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Variable contenant le mot de passe de l'étudiant.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>login</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Variable contenant l'adresse ou le mot d'utilisation de l'étudiant.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -169,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Etudiant.js.html">Etudiant.js</a>, <a href="Etudiant.js.html#line22">line 22</a>
+        <a href="Formulaire.js.html">Formulaire.js</a>, <a href="Formulaire.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -225,16 +149,12 @@
     
 
     
-    <h4 class="name" id="entrerChoix"><span class="type-signature"></span>entrerChoix<span class="signature">(Choix1, Choix2, Choix3, Matricul, callback)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="constructeur"><span class="type-signature"></span>constructeur<span class="signature">(id, nom, prenom, email, choix1, choix2, choix3)</span><span class="type-signature"></span></h4>
     
 
     
 
 
-
-<div class="description">
-    <p>Une méthode qui permet d'inserer les données concernant l'étudiant dans la base de données.</p>
-</div>
 
 
 
@@ -269,76 +189,7 @@
 
         <tr>
             
-                <td class="name"><code>Choix1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Variable contenant le 1 er choix (de la liste SIQ/SIT/SIL) de l'étudiant.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Choix2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Variable contenant le 2 eme choix (de la liste SIQ/SIT/SIL) de l'étudiant.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Choix3</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Variable contenant le 3 eme choix (de la lsite SIQ/SIT/SIL) de l'étudiant.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Matricul</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -361,13 +212,13 @@
 
         <tr>
             
-                <td class="name"><code>callback</code></td>
+                <td class="name"><code>nom</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">strig</span>
 
 
             
@@ -377,7 +228,122 @@
 
             
 
-            <td class="description last"><p>Variable contenant les informations des étudiants à inserer dans la base de données.</p></td>
+            <td class="description last"><p>Variable contenant le nom de l'étudiant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prenom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Variable contenant le prénom de l'étudiant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">email</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Variable conenant l'Email de l'étudiant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>choix1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>choix2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>choix3</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Variable contenant le 1 er choix(de la liste SIQ/SIT/SIL) de l'étudiant.</p></td>
         </tr>
 
     
@@ -418,7 +384,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Etudiant.js.html">Etudiant.js</a>, <a href="Etudiant.js.html#line36">line 36</a>
+        <a href="Formulaire.js.html">Formulaire.js</a>, <a href="Formulaire.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
