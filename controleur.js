@@ -27,7 +27,7 @@ router.put('/ajouter', function (req, res) {
         E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
         if(err)
         {
-            res.status(400).json(err);
+           res.status(400).json(err);
         }
         else{
             res.json(req.body);

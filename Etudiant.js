@@ -10,8 +10,8 @@ class Etudiant extends User {
         this.formulaire=null
     }
     entrerChoix(Choix1,Choix2,Choix3,Matricul, callback) {
-       
-        return  bdd.query('UPDATE etudiant SET Choix1 = ?,Choix2 = ?, Choix3 = ? WHERE Matricul = ?', [Choix1,Choix2,Choix3,Matricul],callback);
+    // return bdd.query(' UPDATE etudiant SET Choix1 ="u",Choix2 ="t", Choix3 = "r" WHERE Matricul ="16/10"', callback);
+    return  bdd.query('UPDATE etudiant SET Choix1 = ?,Choix2 = ?, Choix3 = ? WHERE Matricul = ?', [Choix1,Choix2,Choix3,Matricul],callback);
      }
     
 }
