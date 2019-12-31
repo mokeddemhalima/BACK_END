@@ -24,13 +24,18 @@ router.get('/afficher', function (req, res) {
 /* route pour ajouter les choix des etudiants par l'etudiant*/
 router.put('/ajouter', function (req, res) {
     var E =new Etudiant();
-        E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
+    var Matricul="10";//req.body.Matricul;
+        E.Choix1=req.body.Choix1;
+        E.Choix2 =req.body.Choix2;
+        E.Choix3 =req.body.Choix3;
+        E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,Matricul,function(err,count){
         if(err)
         {
-           res.status(400).json(err);
+          res.status(400).json(err);
+        
         }
         else{
-            res.json(req.body);
+          res.json({ message: 'Choix ajouté!', E })
         }
     });
 });
@@ -44,21 +49,27 @@ router.post('/email', function(req, res, next) {
       pass: 'halima1986'
     }
   }));
-  
-  var mailOptions = {
-    from:'gh_mokeddem@esi.dz',
-    to: req.body.destination,
+  var email = {
+    destination:req.body.destination,
     subject:req.body.subject,
-    text: req.body.message
+    message:req.body.message, 
+    sender:"gh_mokeddem@esi.dz"
+  }
+  
+  var mailOption = {
+    from:'gh_mokeddem@esi.dz',
+    to: email.destination,
+    subject:email.subject,
+    text: email.message
   };
   
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
+  transporter.sendMail(mailOption, function(error, info){
+    if (error || mailOption.text===" ") {
       console.log(error);
-      res.status(503).json(error);
+      res.json(error);
     } else {
       console.log('Email sent: ' + info.response);
-      res.status(200).json(info.response);
+      res.json({message:"lemail est envoyé!",email})
     }
   }); 
   transporter.close(); 

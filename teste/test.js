@@ -4,44 +4,80 @@ var chaiHttp = require('chai-http');
 var serveur = require('../serveur');
 var should = chai.should();
 var Etudiant = require('../Etudiant');
+var bdd = require('../bdd');
 
 chai.use(chaiHttp);
- /*
-  * Test the /GET route
-  */
+
 describe('/GET afficher', () => {
     it('should list ALL students on /afficher GET', function(done) {
+
         chai.request(serveur)
         .get('/etud/afficher')
         .end(function(err, res){
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a('array');
-        done();
+            res.should.have.status(200);
+            res.should.be.json;
+            res.body.should.be.a('array');
+            res.body[0].should.have.property('Matricul');
+            res.body[0].should.have.property('Nom');
+            res.body[0].should.have.property('Prenom');
+            res.body[0].should.have.property('Choix1');
+            res.body[0].should.have.property('Choix2');
+            res.body[0].should.have.property('Choix3');
+            done();
         });
     });
     
 });
- describe('/PUT/:Matricul', () => {
-      it('should update a SINGLE student on /ajouter given Matricul', function(done) {
-        let E = new Etudiant({Matricul:"16/10",Choix1:"sit",Choix2:"sil",Choix3:"siq"})
-            /*chai.request('http://localhost:3000/')
-            .get('/etud/afficher')
-            .end(function(err, res){*/
-            E.save((err,E) => {
-                chai.request('http://localhost:3000/')
-                .put('/etud/ajouter/' + E.Matricul)
-                .send({Choix1:"sit",Choix2:"sil",Choix3:"siq"})
-                .end((err, res) => {
-                      res.should.have.status(200);
-                      /*res.body.should.be.a('object');
-                      response.body.should.have.property('UPDATED');
-                      res.body.should.have.property('message').eql('Choix ajoutés');
-                      res.body.book.should.have.property('Coix1').eql("sit");
-                      res.body.book.should.have.property('Coix1').eql("sil");
-                      res.body.book.should.have.property('Coix1').eql("sic");*/
-                  done();
-                });
-          });
-      });
+
+describe('/PUT ajouter', () => {
+    it('should update a SINGLE student choices on /ajouter given Matricul',function(done) {
+        this.timeout(15000);
+        var E = new Etudiant()
+        E ['Matricul'] ="10" ;
+        E ['Choix1'] ="sit";
+        E ['Choix2'] ="sil";
+        E ['Choix3'] = "siq";  
+        chai.request(serveur)
+        .put('/etud/ajouter')
+        .send(E)
+        .end((err, res) => {
+            if (err) return done(err);
+            should.not.exist(err);
+            (err === null).should.be.true;
+            should.exist(res);
+            res.should.be.json;
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('message').eql('Choix ajouté!');
+            res.body.E.should.have.property('Choix1').eql("sit");
+            res.body.E.should.have.property('Choix2').eql("sil");
+            res.body.E.should.have.property('Choix3').eql("siq");
+            done();
+        });
+    });
 });
+describe('/POST email', () => { 
+    it('it should POST an email ',function (done){
+        this.timeout(15000);
+        var email = {
+            destination:"gh_mokeddem@esi.dz",
+            subject:"aa",
+            message:"bb", 
+            sender:"gh_mokeddem@esi.dz"
+        }
+        chai.request(serveur)
+        .post('/etud/email')
+        .send(email)
+        .end((err, res) => {
+            should.not.exist(err);
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('message').eql('lemail est envoyé!');
+            res.body.email.should.have.property('destination').eql("gh_mokeddem@esi.dz");
+            res.body.email.should.have.property('subject').eql("aa");
+            res.body.email.should.have.property('message').eql("bb");
+            res.body.email.should.have.property('sender').eql("gh_mokeddem@esi.dz");
+            done();
+        });
+    });
+}); 
