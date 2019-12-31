@@ -1,11 +1,11 @@
 /********************création du controleur*************** */
+var Etudiant = require('./Etudiant');
+var Admin = require('./Admin');
+var bdd = require('./bdd');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
-var Etudiant = require('./Etudiant');
-var Admin = require('./Admin');
-var bdd = require('./bdd');
 var nodemailer=require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 /*route pour afficher les choix des etudiants par l'admine*/
@@ -24,11 +24,11 @@ router.get('/afficher', function (req, res) {
 /* route pour ajouter les choix des etudiants par l'etudiant*/
 router.put('/ajouter', function (req, res) {
     var E =new Etudiant();
-    var Matricul="10";//req.body.Matricul;
+        E. Matricul=req.body.Matricul;
         E.Choix1=req.body.Choix1;
         E.Choix2 =req.body.Choix2;
         E.Choix3 =req.body.Choix3;
-        E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,Matricul,function(err,count){
+        E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
         if(err)
         {
           res.status(400).json(err);
@@ -64,7 +64,7 @@ router.post('/email', function(req, res, next) {
   };
   
   transporter.sendMail(mailOption, function(error, info){
-    if (error || mailOption.text===" ") {
+    if (error) {
       console.log(error);
       res.json(error);
     } else {
@@ -72,9 +72,6 @@ router.post('/email', function(req, res, next) {
       res.json({message:"lemail est envoyé!",email})
     }
   }); 
-  transporter.close(); 
-   
+  transporter.close();   
 });
-
-
 module.exports = router;
