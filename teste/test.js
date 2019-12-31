@@ -31,9 +31,9 @@ describe('/PUT ajouter', () => {
         this.timeout(15000);
         var E = new Etudiant()
         E.Matricul ="10" ;
-        E.Choix1 ="sit";
+        E.Choix1 ="siq";
         E.Choix2 ="sil";
-        E.Choix3 = "siq";  
+        E.Choix3 = "sit";  
         chai.request(serveur)
         .put('/etud/ajouter')
         .send(E)
@@ -46,9 +46,9 @@ describe('/PUT ajouter', () => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Choix ajouté!');
-            res.body.E.should.have.property('Choix1').eql("sit");
+            res.body.E.should.have.property('Choix1').eql("siq");
             res.body.E.should.have.property('Choix2').eql("sil");
-            res.body.E.should.have.property('Choix3').eql("siq");
+            res.body.E.should.have.property('Choix3').eql("sit");
             done();
         });
     });

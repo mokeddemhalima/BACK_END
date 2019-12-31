@@ -5,4 +5,12 @@ var connection = mysql.createConnection({
     password : '',
     database :'base'
 });
+connection.connect((err) => {
+    if(err){
+      console.log('Error connecting to Db');
+      return;
+    }
+    console.log('Connection bdd established');
+  });
+  
 module.exports=connection;

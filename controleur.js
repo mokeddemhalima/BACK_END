@@ -23,21 +23,23 @@ router.get('/afficher', function (req, res) {
 });
 /* route pour ajouter les choix des etudiants par l'etudiant*/
 router.put('/ajouter', function (req, res) {
-    var E =new Etudiant();
-        E. Matricul=req.body.Matricul;
+    var E = new Etudiant();
+        E.Matricul=req.body.Matricul;
         E.Choix1=req.body.Choix1;
         E.Choix2 =req.body.Choix2;
         E.Choix3 =req.body.Choix3;
         E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
-        if(err)
-        {
-          res.status(400).json(err);
-        
-        }
-        else{
-          res.json({ message: 'Choix ajouté!', E })
-        }
-    });
+          console.log(count);
+          if(err)
+          {
+              res.status(400).json(err);
+          }
+          else if(count.affectedRows==0)
+                {
+                  res.json({ message: 'Le Matricul n est pas valide', E });
+                }else
+                  res.json({ message: 'Choix ajouté!', E });
+        });
 });
 router.post('/email', function(req, res, next) {
     var transporter = nodemailer.createTransport(smtpTransport({
