@@ -1,14 +1,44 @@
-/********************création du controleur*************** */
+/**
+ * création du controleu
+ */
+/**
+ * Une variable contenant le module retourné par require('express').
+ * @type {objecr} 
+ */
 var express = require('express');
+/**
+ * Une variable contenant un gestionnaire de route créé par express.Router().
+ * @type {any}
+ */
 var router = express.Router();
+/**
+ * Une variable contenant le module retouré par require('body-parser').
+ * @type {object} 
+ */
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
+/**
+ * une variable contenant le module retourné par require('./Etudiant').
+ * @type {object} 
+ */
 var Etudiant = require('./Etudiant');
+/**
+ *  une variable contenant le module retourné par require('./Admin').
+ * @type {object}
+  */
 var Admin = require('./Admin');
+/**
+ * une variable contenant le module retourné par require('./bdd').
+ * @type {object} 
+ */
 var bdd = require('./bdd');
 var nodemailer=require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-/*route pour afficher les choix des etudiants par l'admine*/
+
+/**
+ * Une route pour afficher les choix des étudiants par l'admin.
+ *  @type {any} 
+ */
 router.get('/afficher', function (req, res) {
     var A =new Admin();
         A.getInfo(function(err,rows){
@@ -21,7 +51,10 @@ router.get('/afficher', function (req, res) {
         }
     });
 });
-/* route pour ajouter les choix des etudiants par l'etudiant*/
+/**
+ * une route pour ajouter les étudiants dans la base de donénes
+ * @type {any} 
+ */
 router.put('/ajouter', function (req, res) {
     var E =new Etudiant();
         E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
