@@ -27,10 +27,10 @@ describe('/GET afficher', () => {
 });
 
 describe('/PUT ajouter', () => {
-    it('should update the choices of a SINGLE student  on /ajouter given Matricul',function(done) {
+it('should update the choices of a SINGLE student  on /ajouter given Matricul',function(done) {
         this.timeout(15000);
         var E = new Etudiant()
-        E.Matricul ="10" ;
+        E.Matricul ="16/10" ;
         E.Choix1 ="siq";
         E.Choix2 ="sil";
         E.Choix3 = "sit";  
@@ -52,6 +52,31 @@ describe('/PUT ajouter', () => {
             done();
         });
     });
+it('should not update the choices of a student  on /ajouter when Matricul dose not exist',function(done) {
+        this.timeout(15000);
+        var E = new Etudiant()
+        E.Matricul ="17/10" ;
+        E.Choix1 ="sit";
+        E.Choix2 ="sil";
+        E.Choix3 = "siq";  
+        chai.request(serveur)
+        .put('/etud/ajouter')
+        .send(E)
+        .end((err, res) => {
+            if (err) return done(err);
+            should.not.exist(err);
+            (err === null).should.be.true;
+            should.exist(res);
+            res.should.be.json;
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('message').eql('Le Matricul n est pas valide');
+            res.body.E.should.have.property('Choix1').eql("sit");
+            res.body.E.should.have.property('Choix2').eql("sil");
+            res.body.E.should.have.property('Choix3').eql("siq");
+            done();
+        });     
+    });   
 });
 describe('/POST email', () => { 
     it('it should POST an email ',function (done){
