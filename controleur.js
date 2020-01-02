@@ -40,63 +40,76 @@ var smtpTransport = require('nodemailer-smtp-transport');
  *  @type {any} 
  */
 router.get('/afficher', function (req, res) {
-    var A =new Admin();
-        A.getInfo(function(err,rows){
-        if(err) {
-            res.status(400).json(err);
-        }
-        else
-        {
-            res.json(rows);
-        }
-    });
+  var A =new Admin();
+      A.getInfo(function(err,rows){
+      if(err) {
+          res.status(400).json(err);
+      }
+      else
+      {
+          res.json(rows);
+      }
+  });
 });
 /**
  * une route pour ajouter les étudiants dans la base de donénes
  * @type {any} 
  */
 router.put('/ajouter', function (req, res) {
-    var E =new Etudiant();
-        E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
+  var E = new Etudiant();
+      E.Matricul=req.body.Matricul;
+      E.Choix1=req.body.Choix1;
+      E.Choix2 =req.body.Choix2;
+      E.Choix3 =req.body.Choix3;
+      E.entrerChoix(req.body.Choix1,req.body.Choix2,req.body.Choix3,req.body.Matricul,function(err,count){
         if(err)
         {
             res.status(400).json(err);
         }
-        else{
-            res.json(req.body);
-        }
-    });
+        else if(count.affectedRows==0)
+              {
+                res.json({ message: 'Le Matricul n est pas valide', E });
+              }else
+                res.json({ message: 'Choix ajouté!', E });
+      });
 });
+/**
+ * une route pour envoyer un email aune destination prcise.
+ * @type {any} 
+ */
 router.post('/email', function(req, res, next) {
-    var transporter = nodemailer.createTransport(smtpTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 535,
-    auth: {
-      user: 'gh_mokeddem@esi.dz',
-      pass: 'halima1986'
-    }
-  }));
-  
-  var mailOptions = {
-    from:'gh_mokeddem@esi.dz',
-    to: req.body.destination,
-    subject:req.body.subject,
-    text: req.body.message
-  };
-  
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-      res.status(503).json(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-      res.status(200).json(info.response);
-    }
-  }); 
-  transporter.close(); 
-   
+  var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 535,
+  auth: {
+    user: 'gh_mokeddem@esi.dz',
+    pass: 'halima1986'
+  }
+}));
+var email = {
+  destination:req.body.destination,
+  subject:req.body.subject,
+  message:req.body.message, 
+  sender:"gh_mokeddem@esi.dz"
+}
+
+var mailOption = {
+  from:'gh_mokeddem@esi.dz',
+  to: email.destination,
+  subject:email.subject,
+  text: email.message
+};
+
+transporter.sendMail(mailOption, function(error, info){
+  if (error) {
+    console.log(error);
+    res.json(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+    res.json({message:"lemail est envoyé!",email})
+  }
+}); 
+transporter.close();   
 });
-
-
 module.exports = router;

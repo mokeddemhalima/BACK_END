@@ -20,3 +20,4 @@ var server = app.listen(port, function() {
     const all_routes = require('express-list-endpoints');
     console.log(all_routes(app));
 });
+module.exports=server;
