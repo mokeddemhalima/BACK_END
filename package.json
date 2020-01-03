@@ -27,8 +27,10 @@
     "supertest": "^4.0.2"
   },
   "scripts": {
-    "start": "node serveur.js",
-    "dev": "nodemon serveur.js"
+    "start1": "node serveur1.js",
+    "dev1": "nodemon serveur1.js",
+    "start2": "node serveur2.js",
+    "dev2": "nodemon serveur2.js"
   },
   "keywords": [],
   "author": "",

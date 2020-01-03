@@ -2,13 +2,14 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
 var Etudiant = require('../Etudiant');
-var serveur = require('../serveur');
+var serveur1 = require('../serveur1');
+var serveur2 = require('../serveur2');
 
 chai.use(chaiHttp);
 describe('/GET afficher', () => {
     it('should list ALL students on /afficher GET', function(done) {
-        chai.request(serveur)
-        .get('/etud/afficher')
+        chai.request(serveur1)
+        .get('/etud1/afficher')
         .end(function(err, res){
             res.should.have.status(200);
             res.should.be.json;
@@ -33,8 +34,8 @@ it('should update the choices of a SINGLE student  on /ajouter given Matricul',f
         E.Choix1 ="sil";
         E.Choix2 ="siq";
         E.Choix3 = "sit";  
-        chai.request(serveur)
-        .put('/etud/ajouter')
+        chai.request(serveur2)
+        .put('/etud2/ajouter')
         .send(E)
         .end((err, res) => {
             if (err) return done(err);
@@ -58,8 +59,8 @@ it('should not update the choices of a student  on /ajouter when Matricul dose n
         E.Choix1 ="siq";
         E.Choix2 ="sil";
         E.Choix3 = "sit";  
-        chai.request(serveur)
-        .put('/etud/ajouter')
+        chai.request(serveur2)
+        .put('/etud2/ajouter')
         .send(E)
         .end((err, res) => {
             if (err) return done(err);
@@ -86,8 +87,8 @@ describe('/POST email', () => {
             message:"votre code de confirmation :2486", 
             sender:"gh_mokeddem@esi.dz"
         }
-        chai.request(serveur)
-        .post('/etud/email')
+        chai.request(serveur2)
+        .post('/etud2/email')
         .send(email)
         .end((err, res) => {
             should.not.exist(err);

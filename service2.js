@@ -1,61 +1,36 @@
+
 /**
- * création du controleu
+ * création du 2ème service
  */
 /**
  * Une variable contenant le module retourné par require('express').
- * @type {objecr} 
+ * @type {object} 
  */
 var express = require('express');
 /**
  * Une variable contenant un gestionnaire de route créé par express.Router().
  * @type {any}
  */
-var router = express.Router();
+var router2 = express.Router();
 /**
  * Une variable contenant le module retouré par require('body-parser').
  * @type {object} 
  */
 var bodyParser = require('body-parser');
-router.use(bodyParser.json());
+router2.use(bodyParser.json());
 /**
  * une variable contenant le module retourné par require('./Etudiant').
  * @type {object} 
  */
 var Etudiant = require('./Etudiant');
-/**
- *  une variable contenant le module retourné par require('./Admin').
- * @type {object}
-  */
-var Admin = require('./Admin');
-/**
- * une variable contenant le module retourné par require('./bdd').
- * @type {object} 
- */
-var bdd = require('./bdd');
 var nodemailer=require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 /**
- * Une route pour afficher les choix des étudiants par l'admin.
- *  @type {any} 
- */
-router.get('/afficher', function (req, res) {
-  var A =new Admin();
-      A.getInfo(function(err,rows){
-      if(err) {
-          res.status(400).json(err);
-      }
-      else
-      {
-          res.json(rows);
-      }
-  });
-});
-/**
- * une route pour ajouter les étudiants dans la base de donénes
+ * une route pour ajouter les étudiants dans la base de données
  * @type {any} 
  */
-router.put('/ajouter', function (req, res) {
+router2.put('/ajouter', function (req, res) {
   var E = new Etudiant();
       E.Matricul=req.body.Matricul;
       E.Choix1=req.body.Choix1;
@@ -77,7 +52,7 @@ router.put('/ajouter', function (req, res) {
  * une route pour envoyer un email aune destination prcise.
  * @type {any} 
  */
-router.post('/email', function(req, res, next) {
+router2.post('/email', function(req, res, next) {
   var transporter = nodemailer.createTransport(smtpTransport({
   service: 'gmail',
   host: 'smtp.gmail.com',
@@ -112,4 +87,4 @@ transporter.sendMail(mailOption, function(error, info){
 }); 
 transporter.close();   
 });
-module.exports = router;
+module.exports = router2;
