@@ -54,7 +54,7 @@ it('should update the choices of a SINGLE student  on /ajouter given Matricul',f
 it('should not update the choices of a student  on /ajouter when Matricul dose not exist',function(done) {
         this.timeout(15000);
         var E = new Etudiant()
-        E.Matricul ="17/10" ;
+        E.Matricul ="17/18" ;
         E.Choix1 ="siq";
         E.Choix2 ="sil";
         E.Choix3 = "sit";  
