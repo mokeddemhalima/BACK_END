@@ -1,0 +1,10 @@
+FROM mysql
+
+ENV MYSQL_DATABASE base
+ENV MYSQL_ROOT_PASSWORD pasword
+
+ENV DATABASE_HOST localhost
+
+EXPOSE 3306
+
+COPY . . 
