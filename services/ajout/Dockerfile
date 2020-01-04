@@ -1,7 +1,7 @@
 FROM node:10
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app2
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 4000
 
-CMD [ "node", "ServiceAjout" ]
+CMD [ "node", "serveur2" ]

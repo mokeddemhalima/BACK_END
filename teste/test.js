@@ -1,9 +1,9 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
-var Etudiant = require('../Etudiant');
-var serveur1 = require('../serveur1');
-var serveur2 = require('../serveur2');
+var Etudiant = require('../services/ajout/Etudiant');
+var serveur1 = require('../services/affichage/serveur1');
+var serveur2 = require('../services/ajout/serveur2');
 
 chai.use(chaiHttp);
 describe('/GET afficher', () => {
