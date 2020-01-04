@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
-var Admin = require('./Etudiant');
+var Etudiant = require('./Etudiant');
 var bdd = require('./bdd');
 /*route pour ajouter les choix des etudiants par l'admine*/
 
