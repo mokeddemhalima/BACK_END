@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: bdd.js</title>
+    <title>JSDoc: Source: app1.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: bdd.js</h1>
+    <h1 class="page-title">Source: app1.js</h1>
 
     
 
@@ -27,40 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Une variable contenant le module retourné pas require('mysql').
+ * EXPOSITION DES SERVICES WEB
+ */
+
+/**
+ * variable contenant le module retourné par require('express').
+ * @type {objetc} 
+ */
+
+var express = require('express');
+/**
+ * une variable contenant une nouvelle application express créée par la fonction référence express().
  * @type {object} 
  */
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    /**
-     * le hostname de la base de données, par defaut localhost.
-     * @type {string} 
-     */
-    host     : 'localhost',
-     /**
-      * L'utilisateur de la base de données.
-      * @type {string} 
-      */
-    user     : 'root',
-     /**
-      * Le mot de passe de l'utilisateur de la base de données. 
-      * @type {string} 
-      */
-    password : '',
-    /**
-     * Le nom de la base de données à utiliser pour la connection.
-     * @type {string} 
-     */
-    database :'base'
-});
-connection.connect((err) => {
-  if(err){
-    console.log('Error connecting to Db');
-    return;
-  }
-  console.log('Connection bdd established');
-});
-    module.exports=connection;</code></pre>
+var app1 = express();
+/**
+ * Variable contenant le module retourné par require('./controleur').
+ * @type {object} 
+ */
+var service1 = require('./service1');
+app1.use('/etud1', service1);
+module.exports = app1;</code></pre>
         </article>
     </section>
 
