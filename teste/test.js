@@ -30,7 +30,7 @@ describe('/PUT ajouter', () => {
 it('should update the choices of a SINGLE student  on /ajouter given Matricul',function(done) {
         this.timeout(15000);
         var E = new Etudiant()
-        E.Matricul ="16/10" ;
+        E.Matricul ="17/10" ;
         E.Choix1 ="sil";
         E.Choix2 ="siq";
         E.Choix3 = "sit";  
