@@ -33,7 +33,7 @@
     "dev1": "nodemon serveur1.js",
     "start2": "node serveur2.js",
     "dev2": "nodemon serveur2.js",
-    "doc":"jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "author": "",
